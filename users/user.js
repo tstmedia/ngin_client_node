@@ -53,6 +53,10 @@ var User = Model.extend({
       payload.grant_type = 'authorization_code'
       payload.code = options.code
     }
+    else if (options.refresh) {
+      payload.grant_type = 'refresh'
+      payload.code = options.refresh
+    }
     else if (options.username && options.password) {
       payload.grant_type = 'password'
       payload.username = options.username
@@ -61,7 +65,8 @@ var User = Model.extend({
 
     request.post({
       uri: url,
-      form: payload
+      form: payload,
+      jar: false // prevent cookies
     },
     function(err, res, body) {
       if (err) return callback(err)
