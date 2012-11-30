@@ -46,6 +46,11 @@ var User = Model.extend({
 
   isThirdNorth: function() {
     return this.permissions && this.permissions.some(isThirdNorth)
+  },
+
+  groups: function(callback) {
+    var url = Url.resolve(config.urls.users, '/users/' + this.user.id + '/groups')
+    User.sync('read', null, { url:url }, callback)
   }
 
 }, {
@@ -96,10 +101,5 @@ var User = Model.extend({
     }
     options.url = Url.resolve(config.urls.users, '/oauth/me')
     User.create({id:'me'}, options, callback)
-  },
-
-  groups: function(options, callback) {
-    var url = Url.resolve(config.urls.users, '/users/' + options.id + '/groups')
-    User.sync('read', null, { url:url }, callback)
   }
 })
