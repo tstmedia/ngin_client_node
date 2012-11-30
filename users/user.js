@@ -96,5 +96,10 @@ var User = Model.extend({
     }
     options.url = Url.resolve(config.urls.users, '/oauth/me')
     User.create({id:'me'}, options, callback)
+  },
+
+  groups: function(options, callback) {
+    var url = Url.resolve(config.urls.users, '/users/' + options.id + '/groups')
+    User.sync('read', null, { url:url }, callback)
   }
 })
