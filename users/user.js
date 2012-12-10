@@ -39,7 +39,7 @@ module.exports = function(ngin) {
     },
 
     groups: function(callback) {
-      var url = Url.resolve(config.urls.users, '/users/' + this.user.id + '/groups')
+      var url = Url.resolve(config.urls.users, '/users/' + this.id + '/groups')
       User.sync('read', null, { url:url }, callback)
     }
 
