@@ -36,13 +36,13 @@ module.exports = function(ngin) {
       return ngin.Persona.list(_.extend({}, options, {url:url}), callback)
     },
 
-    add_persona: function(personId, callback) {
-      var url = this.urlRoot() + '/' + this.id + '/add_persona/' + personId
+    add_persona: function(personaID, callback) {
+      var url = this.urlRoot() + '/' + this.id + '/add_persona/' + personaID
       Group.sync('update', null, { url:url }, callback)
     },
 
-    remove_persona: function(personId, callback) {
-      var url = this.urlRoot() + '/' + this.id + '/remove_persona/' + personId
+    remove_persona: function(personaID, callback) {
+      var url = this.urlRoot() + '/' + this.id + '/remove_persona/' + personaID
       Group.sync('update', null, { url:url }, callback)
     }
 
